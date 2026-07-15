@@ -68,8 +68,18 @@ export default function LeftPanel() {
           <div className="relative z-10 p-4">
             {/* Avatar */}
             <div className="relative w-12 h-12 mb-3">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500
-                              via-purple-500 to-cyan-400 flex items-center
+              <img
+                src="/ayush.jpg"
+                alt="Ayush Agarwal"
+                className="w-12 h-12 rounded-full object-cover border border-indigo-500/50 shadow-lg"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                  const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                  if (fallback) fallback.style.display = "flex";
+                }}
+              />
+              <div className="hidden w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500
+                              via-purple-500 to-cyan-400 items-center
                               justify-center text-lg font-bold text-white shadow-lg">
                 A
               </div>

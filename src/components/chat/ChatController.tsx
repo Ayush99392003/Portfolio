@@ -81,9 +81,19 @@ export default function ChatController() {
           </button>
 
           <div className="flex items-center gap-2.5">
-            <div className="relative">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-600
-                              to-cyan-500 flex items-center justify-center
+            <div className="relative flex-shrink-0">
+              <img
+                src="/ayush.jpg"
+                alt="Ayush Agarwal"
+                className="w-8 h-8 rounded-full object-cover border border-indigo-600/40"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                  const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                  if (fallback) fallback.style.display = "flex";
+                }}
+              />
+              <div className="hidden w-8 h-8 rounded-full bg-gradient-to-br from-indigo-600
+                              to-cyan-500 items-center justify-center
                               text-xs font-bold text-white">
                 A
               </div>

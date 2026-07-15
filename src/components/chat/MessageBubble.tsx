@@ -26,15 +26,28 @@ export default function MessageBubble({ role, text, index }: MessageBubbleProps)
     >
       {/* Avatar for bot / llm */}
       {!isUser && (
-        <div
-          className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center
-                      justify-center text-xs font-bold text-white mr-2 mt-0.5
-                      ${isLLM
-                        ? "bg-gradient-to-br from-violet-600 to-pink-500"
-                        : "bg-gradient-to-br from-indigo-600 to-cyan-500"
-                      }`}
-        >
-          {isLLM ? "✦" : "A"}
+        <div className="flex-shrink-0 mr-2 mt-0.5 relative">
+          {isLLM ? (
+            <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white bg-gradient-to-br from-violet-600 to-pink-500">
+              ✦
+            </div>
+          ) : (
+            <>
+              <img
+                src="/ayush.jpg"
+                alt="Ayush Agarwal"
+                className="w-7 h-7 rounded-full object-cover border border-indigo-500/50"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                  const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                  if (fallback) fallback.style.display = "flex";
+                }}
+              />
+              <div className="hidden w-7 h-7 rounded-full bg-gradient-to-br from-indigo-600 to-cyan-500 items-center justify-center text-xs font-bold text-white">
+                A
+              </div>
+            </>
+          )}
         </div>
       )}
 
