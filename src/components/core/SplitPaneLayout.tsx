@@ -80,11 +80,11 @@ export default function SplitPaneLayout() {
               fixed md:relative right-0 top-0
             "
             initial={{ width: 0, opacity: 0 }}
-            animate={{ width: 340, opacity: 1 }}
+            animate={{ width: typeof window !== "undefined" && window.innerWidth < 768 ? "90vw" : 480, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
-            <div className="w-[340px] h-full">
+            <div className="w-[90vw] md:w-[480px] h-full">
               <RightSidebar />
             </div>
           </motion.div>
