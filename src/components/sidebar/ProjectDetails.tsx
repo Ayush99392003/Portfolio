@@ -13,6 +13,10 @@ function GithubIcon({ size = 13 }: { size?: number }) {
 
 // Project accent colors
 const PROJECT_ACCENTS: Record<string, { primary: string; glow: string; gradA: string; gradB: string }> = {
+  lexai:               { primary: "#818cf8", glow: "#818cf840", gradA: "#1e1b4b", gradB: "#0c0a2e" },
+  prescription:        { primary: "#34d399", glow: "#34d39935", gradA: "#062f22", gradB: "#020f0b" },
+  fiducia:             { primary: "#a78bfa", glow: "#a78bfa35", gradA: "#2e1065", gradB: "#0f052d" },
+  video_detection:     { primary: "#f472b6", glow: "#f472b630", gradA: "#3c0722", gradB: "#16020c" },
   hybrid_rag:          { primary: "#818cf8", glow: "#818cf840", gradA: "#1e1b4b", gradB: "#0c0a2e" },
   polarbrief:          { primary: "#22d3ee", glow: "#22d3ee35", gradA: "#0c1f2e", gradB: "#060d1a" },
   knowledge_graph:     { primary: "#34d399", glow: "#34d39935", gradA: "#0a1f1a", gradB: "#030f0d" },
@@ -33,7 +37,7 @@ export default function ProjectDetails({ contentId }: ProjectDetailsProps) {
 
   return (
     <div className="flex flex-col h-full overflow-y-auto"
-         style={{ scrollbarWidth: "thin", scrollbarColor: "#27272a transparent" }}>
+         style={{ scrollbarWidth: "thin", scrollbarColor: "var(--scrollbar-thumb) transparent" }}>
 
       {/* ── Hero Banner ── */}
       <motion.div
@@ -59,7 +63,7 @@ export default function ProjectDetails({ contentId }: ProjectDetailsProps) {
           <div className="text-4xl mb-3 leading-none">{project.emoji}</div>
           <h2 className="text-base font-bold text-white leading-tight">{project.title}</h2>
           <p className="text-xs mt-1" style={{ color: acc.primary }}>{project.tagline}</p>
-          <p className="text-xs text-zinc-400 mt-3 leading-relaxed">{project.description}</p>
+          <p className="text-xs text-zinc-300 mt-3 leading-relaxed">{project.description}</p>
 
           {/* CTA Buttons */}
           <div className="flex gap-2 mt-4">
@@ -90,7 +94,8 @@ export default function ProjectDetails({ contentId }: ProjectDetailsProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 260, damping: 22, delay: 0.08 }}
         >
-          <p className="text-[10px] font-semibold text-zinc-600 uppercase tracking-widest mb-2 px-1">
+          <p className="text-[10px] font-semibold uppercase tracking-widest mb-2 px-1"
+             style={{ color: "var(--text-muted)" }}>
             Key Metrics
           </p>
           <div className="grid grid-cols-2 gap-2">
@@ -113,44 +118,50 @@ export default function ProjectDetails({ contentId }: ProjectDetailsProps) {
 
       {/* ── Problem ── */}
       <motion.div
-        className="mx-3 mt-3 p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/60"
+        className="mx-3 mt-3 p-4 rounded-xl border panel-transition"
+        style={{ background: "var(--card-bg)", borderColor: "var(--border-subtle)" }}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 260, damping: 22, delay: 0.14 }}
       >
         <div className="flex items-center gap-2 mb-2">
           <span className="text-base">🔍</span>
-          <h3 className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider"
+              style={{ color: "var(--text-muted)" }}>
             The Problem
           </h3>
         </div>
-        <p className="text-xs text-zinc-300 leading-relaxed">{project.problem}</p>
+        <p className="text-xs leading-relaxed" style={{ color: "var(--text-secondary)" }}>{project.problem}</p>
       </motion.div>
 
       {/* ── Solution ── */}
       <motion.div
-        className="mx-3 mt-2 p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/60"
+        className="mx-3 mt-2 p-4 rounded-xl border panel-transition"
+        style={{ background: "var(--card-bg)", borderColor: "var(--border-subtle)" }}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 260, damping: 22, delay: 0.20 }}
       >
         <div className="flex items-center gap-2 mb-2">
           <span className="text-base">💡</span>
-          <h3 className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider"
+              style={{ color: "var(--text-muted)" }}>
             The Solution
           </h3>
         </div>
-        <p className="text-xs text-zinc-300 leading-relaxed">{project.solution}</p>
+        <p className="text-xs leading-relaxed" style={{ color: "var(--text-secondary)" }}>{project.solution}</p>
       </motion.div>
 
       {/* ── Tech Stack ── */}
       <motion.div
-        className="mx-3 mt-2 mb-4 p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/60"
+        className="mx-3 mt-2 mb-4 p-4 rounded-xl border panel-transition"
+        style={{ background: "var(--card-bg)", borderColor: "var(--border-subtle)" }}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 260, damping: 22, delay: 0.26 }}
       >
-        <h3 className="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider mb-3">
+        <h3 className="text-[11px] font-semibold uppercase tracking-wider mb-3"
+            style={{ color: "var(--text-muted)" }}>
           🛠 Tech Stack
         </h3>
         <div className="flex flex-wrap gap-1.5">
