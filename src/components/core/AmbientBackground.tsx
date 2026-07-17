@@ -1,8 +1,10 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { useChatStore } from "@/store/useChatStore";
 
 export default function AmbientBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useChatStore();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -21,7 +23,9 @@ export default function AmbientBackground() {
       color: string;
     }[] = [];
 
-    const colors = ["#4F46E5", "#06B6D4", "#7C3AED", "#0EA5E9"];
+    const darkColors  = ["#4F46E5", "#06B6D4", "#7C3AED", "#0EA5E9"];
+    const lightColors = ["#6366f1", "#38bdf8", "#818cf8", "#a5b4fc"];
+    const colors = theme === "light" ? lightColors : darkColors;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -54,9 +58,8 @@ export default function AmbientBackground() {
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 120) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(79,70,229,${
-              (1 - dist / 120) * 0.08
-            })`;
+            const lineAlpha = (1 - dist / 120) * (theme === "light" ? 0.06 : 0.08);
+            ctx.strokeStyle = `rgba(79,70,229,${lineAlpha})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -91,7 +94,7 @@ export default function AmbientBackground() {
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", resize);
     };
-  }, []);
+  }, [theme]);
 
   return (
     <canvas

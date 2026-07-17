@@ -41,29 +41,62 @@ export default function RightSidebar() {
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div
+      className="flex flex-col h-full panel-transition"
+      style={{ background: "var(--panel-bg)" }}
+    >
       {/* Accent top strip */}
-      <div className="h-[2px] flex-shrink-0"
-           style={{ background: `linear-gradient(90deg, transparent, ${meta.accent}90, transparent)` }} />
+      <div
+        className="h-[2px] flex-shrink-0"
+        style={{
+          background: `linear-gradient(90deg, transparent, ${meta.accent}90, transparent)`,
+        }}
+      />
 
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3
-                      border-b border-zinc-800/60 bg-zinc-950/80
-                      backdrop-blur-sm flex-shrink-0">
+      <div
+        className="flex items-center justify-between px-4 py-3
+                    backdrop-blur-sm flex-shrink-0 border-b panel-transition"
+        style={{
+          background: "var(--panel-bg)",
+          borderColor: "var(--border)",
+        }}
+      >
         <div className="flex items-center gap-2.5">
-          <div className="w-2 h-2 rounded-full flex-shrink-0"
-               style={{ background: meta.accent, boxShadow: `0 0 8px ${meta.accent}` }} />
-          <span className="text-xs font-semibold text-zinc-300">{meta.label}</span>
+          <div
+            className="w-2 h-2 rounded-full flex-shrink-0"
+            style={{
+              background: meta.accent,
+              boxShadow: `0 0 8px ${meta.accent}`,
+            }}
+          />
+          <span
+            className="text-xs font-semibold"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            {meta.label}
+          </span>
           {rightSidebar.contentId && (
-            <span className="text-[10px] text-zinc-700 font-mono">
+            <span
+              className="text-[10px] font-mono"
+              style={{ color: "var(--text-muted)" }}
+            >
               / {rightSidebar.contentId.replace(/_/g, " ")}
             </span>
           )}
         </div>
-        <button onClick={closeRightSidebar}
-                className="p-1.5 rounded-lg text-zinc-600 hover:text-zinc-300
-                           hover:bg-zinc-800/60 transition-all duration-150"
-                aria-label="Close sidebar">
+        <button
+          onClick={closeRightSidebar}
+          className="p-1.5 rounded-lg transition-all duration-150"
+          style={{ color: "var(--text-muted)" }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.color = "var(--text-secondary)")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.color = "var(--text-muted)")
+          }
+          aria-label="Close sidebar"
+        >
           <X size={14} />
         </button>
       </div>
@@ -74,7 +107,10 @@ export default function RightSidebar() {
           <motion.div
             key={`${rightSidebar.contentType}-${rightSidebar.contentId}`}
             className="absolute inset-0 overflow-y-auto"
-            style={{ scrollbarWidth: "thin", scrollbarColor: "#27272a transparent" }}
+            style={{
+              scrollbarWidth: "thin",
+              scrollbarColor: "var(--scrollbar-thumb) transparent",
+            }}
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -12 }}

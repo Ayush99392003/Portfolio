@@ -11,24 +11,28 @@ try {
 } catch {
   // Fallback context if file not found
   PORTFOLIO_CONTEXT = `
-Ayush Agarwal is an AI/ML Engineer and B.Tech CSE student at VIT Bhopal (CGPA 8.52).
+Ayush Agarwal is an AI Software Engineer and B.Tech CSE student at VIT Bhopal University (CGPA 8.52).
 
 EXPERIENCE:
-- AI/ML Intern at Docu3C Technologies: Built LLM pipelines with Azure AI, multi-agent systems using MCP, FastAPI backends with SSE/WebSockets, Streamlit/React frontends.
+- AI Software Engineer Intern at Docu3C Technologies (Aug 2025 – Jun 2026, Remote, Seattle): Built production-grade LLM pipelines with structured outputs using Pydantic and Instructor. Designed multi-agent systems with MCP (Model Context Protocol) reducing manual financial document review by 60%. Built FastAPI backends with SSE/WebSockets, React/Streamlit frontends, CRM development, ServiceNow agentic workflows. Deployed on Microsoft Azure.
 
 KEY PROJECTS:
-1. Hybrid Legal RAG: BM25 + FAISS + PageRank with RRF fusion. 82.4% Top-1 accuracy on 26K+ docs.
-2. PolarBrief AI: Legal argument analyzer using LangChain, OCR, TF-IDF, Streamlit.
-3. Knowledge Graph Pipeline: NLP entity extraction, NetworkX/PyVis visualization.
-4. WESAD Emotion Recognition: ML benchmarking on physiological signals.
-5. Constitution Companion: AI-powered Indian Constitution guide.
-6. Simhastha: AI guide for Kumbh Mela pilgrims.
+1. LexAI — Full-Stack Legal Intelligence Platform: Production-grade Legal AI platform indexing 26,274 Supreme Court judgments. Hybrid RAG pipeline: BM25 (SQLite FTS5) + FAISS dense retrieval + PageRank graph ranking + Weighted RRF. FastAPI backend with WebSockets, Docker on Google Cloud Run, Firebase-hosted React web + Flutter mobile clients. Live at: lexai-3fd1a.web.app
+2. PRESCRIPTION — AI Voice Medical Assistant: Voice AI converting doctor consultations to structured digital prescriptions. Faster-Whisper ASR + Groq LLM medical entity extraction + RapidFuzz matching across 30,000+ Indian medicines, PDF generation, PyTest validation suite, Docker. Live on Hugging Face Spaces.
+3. Fiducia — Neuro-Symbolic Damage Claim Predictor (HackerRank Orchestrate): Dynamic AI Claim Verification system utilizing a Symbolic Router to select Strategy A (Direct Pydantic JSON extraction for low-risk users) or Strategy B (Chain-of-Thought reasoning for high-risk users). Integrated full OpenTelemetry & Arize Phoenix tracing, achieving a 93.8% Average Partial Score.
+4. Video Manipulation Detection System: AI-powered video analysis pipeline built with PyTorch, Facebook DETR ResNet50 (Hugging Face) for frame-level object consistency, and OpenCV Optical Flow for motion anomaly detection. Visualized via Streamlit UI.
+5. Legal Knowledge Graph Pipeline: End-to-end NLP pipeline transforming unstructured legal PDFs into knowledge graphs using OCR, spaCy NER, RapidFuzz cross-chunk entity resolution, NetworkX + PyVis visualization.
+6. Hybrid Legal RAG: BM25 + FAISS + PageRank with RRF fusion. 82.4% Top-1 accuracy on 26K+ docs.
+7. PolarBrief AI: Legal argument analyzer using LangChain, OCR, TF-IDF, Streamlit.
+8. WESAD Emotion Recognition: ML benchmarking on physiological signals.
 
-SKILLS: Python, TypeScript, FastAPI, LangChain, FAISS, Pydantic, Instructor, MCP, Azure, Docker, OpenTelemetry, Arize Phoenix, React, Streamlit.
+SKILLS: Python, TypeScript, Flutter, FastAPI, LangChain, FAISS, Pydantic, Instructor, MCP, Microsoft Azure, Google Cloud Run, Firebase, Docker, SQLAlchemy, PostgreSQL, Firestore, SQLite FTS5, RapidFuzz, spaCy, Faster-Whisper, OpenTelemetry, Arize Phoenix, React, Streamlit, PyTorch, OpenCV, Transformers.
 
 CERTIFICATIONS: Microsoft Azure Data Fundamentals, Google Cloud GenAI (3 certs), NPTEL Machine Learning.
 
-CONTACT: LinkedIn: linkedin.com/in/ayush20039939 | GitHub: github.com/Ayush99392003 | Email: ayush20039939@gmail.com
+ACHIEVEMENTS: Top 25 team Mahakumbh Hackathon, 125+ LeetCode problems solved.
+
+CONTACT: LinkedIn: linkedin.com/in/ayush20039939 | GitHub: github.com/Ayush99392003 | Email: ayush20039939@gmail.com | Live Project: lexai-3fd1a.web.app
   `.trim();
 }
 

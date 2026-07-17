@@ -24,33 +24,48 @@ export default function LeftPanel() {
   const { toggleLeftPanel } = useChatStore();
 
   return (
-    <div className="flex flex-col h-full overflow-hidden">
+    <div
+      className="flex flex-col h-full overflow-hidden panel-transition"
+      style={{ background: "var(--panel-bg)" }}
+    >
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3
-                      border-b border-zinc-800/60 flex-shrink-0">
+      <div
+        className="flex items-center justify-between px-4 py-3
+                    border-b flex-shrink-0 panel-transition"
+        style={{ borderColor: "var(--border)" }}
+      >
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-widest">
+          <span
+            className="text-[11px] font-semibold uppercase tracking-widest"
+            style={{ color: "var(--text-muted)" }}
+          >
             Activity
           </span>
         </div>
-        <button onClick={toggleLeftPanel}
-                className="p-1.5 rounded-lg text-zinc-600 hover:text-zinc-300
-                           hover:bg-zinc-800/60 transition-all duration-150">
+        <button
+          onClick={toggleLeftPanel}
+          className="p-1.5 rounded-lg transition-all duration-150"
+          style={{ color: "var(--text-muted)" }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
+        >
           <X size={14} />
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto"
-           style={{ scrollbarWidth: "thin", scrollbarColor: "#27272a transparent" }}>
+      <div
+        className="flex-1 overflow-y-auto"
+        style={{ scrollbarWidth: "thin", scrollbarColor: "var(--scrollbar-thumb) transparent" }}
+      >
 
         {/* ── Profile Card ── */}
         <motion.div
-          className="relative mx-3 mt-3 rounded-2xl overflow-hidden"
+          className="relative mx-3 mt-3 rounded-2xl overflow-hidden panel-transition"
           style={{
-            background: "linear-gradient(135deg, #1e1b4b, #0f0a2e)",
+            background: "linear-gradient(135deg, var(--card-bg-solid), var(--panel-solid))",
             border: "1px solid rgba(99,102,241,0.3)",
-            boxShadow: "0 0 30px -8px rgba(99,102,241,0.2)",
+            boxShadow: "0 0 30px -8px rgba(99,102,241,0.15)",
           }}
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -87,9 +102,19 @@ export default function LeftPanel() {
                                bg-emerald-500 rounded-full border-2 border-black" />
             </div>
 
-            <h2 className="text-sm font-bold text-white">Ayush Agarwal</h2>
-            <p className="text-[11px] text-indigo-300/80 mt-0.5">AI/ML Engineer · VIT Bhopal</p>
-            <p className="text-[11px] text-zinc-500 mt-0.5">B.Tech CSE · CGPA 8.52</p>
+            <h2
+              className="text-sm font-bold"
+              style={{ color: "var(--text-primary)" }}
+            >
+              Ayush Agarwal
+            </h2>
+            <p className="text-[11px] text-indigo-400/90 mt-0.5">AI/ML Engineer · VIT Bhopal</p>
+            <p
+              className="text-[11px] mt-0.5"
+              style={{ color: "var(--text-muted)" }}
+            >
+              B.Tech CSE · CGPA 8.52
+            </p>
 
             {/* Social links */}
             <div className="flex gap-2 mt-3 flex-wrap">
@@ -115,10 +140,10 @@ export default function LeftPanel() {
 
         {/* ── Currently Exploring ── */}
         <motion.div
-          className="mx-3 mt-2.5 p-3.5 rounded-xl"
+          className="mx-3 mt-2.5 p-3.5 rounded-xl panel-transition"
           style={{
-            background: "rgba(16,16,20,0.8)",
-            border: "1px solid rgba(52,211,153,0.15)",
+            background: "var(--card-bg)",
+            border: "1px solid rgba(52,211,153,0.20)",
           }}
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -138,7 +163,11 @@ export default function LeftPanel() {
               "Structured LLM Outputs (Instructor)",
               "GPT-5 Tooling Capabilities",
             ].map((item, i) => (
-              <li key={i} className="flex items-start gap-1.5 text-[11px] text-zinc-400">
+              <li
+                key={i}
+                className="flex items-start gap-1.5 text-[11px]"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 <span className="text-emerald-500/70 mt-0.5 flex-shrink-0">→</span>
                 {item}
               </li>
@@ -149,10 +178,16 @@ export default function LeftPanel() {
         {/* ── LinkedIn Posts Header ── */}
         <div className="mx-3 mt-4 mb-2 flex items-center gap-2">
           <LinkedinIcon size={12} className="text-blue-400" />
-          <span className="text-[10px] font-semibold text-zinc-600 uppercase tracking-widest">
+          <span
+            className="text-[10px] font-semibold uppercase tracking-widest"
+            style={{ color: "var(--text-muted)" }}
+          >
             Latest Posts
           </span>
-          <div className="flex-1 h-px bg-zinc-800/60 ml-1" />
+          <div
+            className="flex-1 h-px ml-1"
+            style={{ background: "var(--border-subtle)" }}
+          />
         </div>
 
         {/* ── Posts ── */}
@@ -168,10 +203,14 @@ export default function LeftPanel() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 260, damping: 22, delay: 0.12 + i * 0.06 }}
             >
-              <div className="relative p-3 rounded-xl overflow-hidden
-                              bg-zinc-900/50 border border-zinc-800/60
-                              group-hover:border-blue-700/30
-                              group-hover:bg-zinc-900/80 transition-all duration-200">
+              <div
+                className="relative p-3 rounded-xl overflow-hidden
+                            transition-all duration-200"
+                style={{
+                  background: "var(--card-bg)",
+                  border: "1px solid var(--border-subtle)",
+                }}
+              >
                 {/* Hover shimmer */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100
                                 transition-opacity duration-300 pointer-events-none"
@@ -193,8 +232,10 @@ export default function LeftPanel() {
                     <ExternalLink size={10}
                                   className="text-zinc-700 group-hover:text-blue-400 transition-colors" />
                   </div>
-                  <p className="text-[11px] text-zinc-500 group-hover:text-zinc-400
-                                leading-relaxed transition-colors line-clamp-4">
+                  <p
+                    className="text-[11px] leading-relaxed transition-colors line-clamp-4"
+                    style={{ color: "var(--text-muted)" }}
+                  >
                     {post.content}
                   </p>
                 </div>
@@ -202,11 +243,18 @@ export default function LeftPanel() {
             </motion.a>
           ))}
 
-          <a href="https://www.linkedin.com/in/ayush20039939" target="_blank" rel="noopener noreferrer"
-             className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-xl
-                        border border-zinc-800 text-[11px] text-zinc-600
-                        hover:text-blue-400 hover:border-blue-800/40
-                        transition-all duration-200">
+          <a
+            href="https://www.linkedin.com/in/ayush20039939"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-xl
+                       text-[11px] hover:text-blue-400
+                       transition-all duration-200"
+            style={{
+              color: "var(--text-muted)",
+              border: "1px solid var(--border)",
+            }}
+          >
             <LinkedinIcon size={11} className="text-blue-500" />
             View all posts on LinkedIn
             <ExternalLink size={10} />

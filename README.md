@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ayush Agarwal — AI Software Engineer Portfolio
 
-## Getting Started
+An interactive, premium, conversational portfolio showcasing my work as an AI Software Engineer. Built with a 3-pane responsive dashboard featuring an intelligent chat assistant, active state visualizer, and custom sidebar widgets.
 
-First, run the development server:
+Live Web App: **[lexai-3fd1a.web.app](https://lexai-3fd1a.web.app)** (Flagship Product: LexAI)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features & Capabilities
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🌗 Light / Dark Mode System
+- Dynamic custom properties for theme-aware panel backgrounds, cards, borders, text, and custom scrollbars.
+- Smooth transition triggers with an animated Sun / Moon switcher in the chat header.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 📱 Adaptive Mobile Sync
+- Desktop 3-pane layout adapts to overlays/drawers on screens `< 768px`.
+- Interactive touch-to-dismiss background overlay.
+- Synchronized pane states: opening the Left Activity Feed automatically closes the Right Sidebar on mobile viewports.
 
-## Learn More
+### 💬 Guided & Conversational AI Chat
+- Powered by a state machine routing system (`conversationGraph.ts`) for recruiter, engineer, founder, and student pathways.
+- Integrates freeform LLM chat queries (via OpenAI `gpt-4o-mini`) using system-prompt guidelines matching the developer's experience.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Tech Stack & Architecture
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Frontend**: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS, Framer Motion, Lucide Icons, Mermaid (interactive charts)
+- **State Management**: Zustand
+- **Backend & APIs**: FastAPI, OpenAI SDK, SQLite (WAL mode, FTS5)
+- **Observability & Tracing**: OpenTelemetry, Arize Phoenix
+- **Package Manager**: `uv`
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🏗️ Flagship Projects Profiled
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 1. **LexAI — Legal AI Platform** (Live: [lexai-3fd1a.web.app](https://lexai-3fd1a.web.app))
+- Production-grade platform indexing **26,274 Supreme Court judgments**.
+- Hybrid RAG pipeline combining BM25 (SQLite FTS5), FAISS dense vector retrieval, PageRank citation centrality, and Weighted Reciprocal Rank Fusion.
+- Flutter mobile app + React web client; backend containerized on Google Cloud Run.
+
+### 2. **PRESCRIPTION — Voice AI Medical Assistant** (Live: Hugging Face Spaces)
+- Doctor-patient voice session transcription converting consultations into digital PDF prescriptions.
+- Faster-Whisper ASR, Groq LLM medical entity extractor, and RapidFuzz phonetics matching across **30,000+ Indian medicines**.
+- Scoped session databases via SQLite.
+
+### 3. **Fiducia — Neuro-Symbolic Damage Claim Predictor**
+- Created for the *HackerRank Orchestrate* hackathon (Top 25 team).
+- Implements a dynamic **Strategy Smart** orchestrator selecting zero-shot direct Pydantic JSON extraction (low-risk) or Chain-of-Thought reasoning (high-risk).
+- Achieved a **93.8% Average Partial Score** with full Arize Phoenix telemetry.
+
+---
+
+## 🚀 Getting Started
+
+### Local Setup
+Ensure Node.js is installed.
+
+1. Clone the repository and install packages:
+   ```bash
+   npm install
+   ```
+
+2. Create a `.env.local` file:
+   ```ini
+   OPENAI_API_KEY="your-api-key"
+   ```
+
+3. Launch development server:
+   ```bash
+   npm run dev
+   ```
+   Open `http://localhost:3000` to interact with the portfolio.
+
+---
+
+*Built with ❤️ for research, learning, and pragmatic systems engineering.*

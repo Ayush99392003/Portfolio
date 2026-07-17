@@ -19,7 +19,7 @@ export default function ResumeViewer() {
             <p className="text-[10px] text-zinc-500 mt-0.5">Ayush Agarwal · AI/ML Engineer</p>
           </div>
           <a
-            href="/CV_Ayush_.pdf"
+            href="/ayush_cv.pdf"
             download
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg
                        bg-indigo-600 hover:bg-indigo-500 border border-indigo-500
@@ -71,7 +71,7 @@ export default function ResumeViewer() {
               transition={{ duration: 0.15 }}
             >
               <iframe
-                src="/CV_Ayush_.pdf#toolbar=0"
+                src="/ayush_cv.pdf#toolbar=0"
                 className="w-full h-full border-none bg-zinc-900/10"
                 title="Ayush Agarwal Resume"
               />
@@ -93,11 +93,14 @@ export default function ResumeViewer() {
                 </h3>
                 <ul className="space-y-2">
                   {[
-                    "AI/ML Intern @ Docu3C Technologies",
-                    "Built 4+ production AI/ML systems",
-                    "82.4% Top-1 RAG accuracy on 26K+ docs",
+                    "AI Software Engineer Intern @ Docu3C (Aug 2025 – Jun 2026)",
+                    "LexAI — Live Legal AI Platform · lexai-3fd1a.web.app",
+                    "PRESCRIPTION — Voice AI Medical Assistant · Hugging Face",
+                    "60% reduction in manual document review via MCP workflows",
+                    "26,274 SC judgments indexed · Hybrid RAG (BM25+FAISS+PageRank)",
                     "B.Tech CSE @ VIT Bhopal (CGPA 8.52/10)",
-                    "5 Certifications (Microsoft + Google Cloud)",
+                    "5 Certifications (Microsoft Azure + Google Cloud × 3 + NPTEL)",
+                    "Top 25 team · Mahakumbh Hackathon",
                     "125+ LeetCode problems solved",
                     "Event Lead · 5+ workshops · 200+ participants",
                   ].map((item, i) => (
@@ -116,7 +119,7 @@ export default function ResumeViewer() {
                   Download the full PDF for details regarding education, internship achievements, certifications, leadership roles, and direct contact details.
                 </p>
                 <a
-                  href="/CV_Ayush_.pdf"
+                  href="/ayush_cv.pdf"
                   download
                   className="px-4 py-2 rounded-lg bg-zinc-800 border border-zinc-700 text-xs text-zinc-300 hover:text-white hover:border-indigo-500/50 transition-all duration-150"
                 >

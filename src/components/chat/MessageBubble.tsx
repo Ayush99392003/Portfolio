@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
+import { useChatStore } from "@/store/useChatStore";
 
 interface MessageBubbleProps {
   role: "user" | "bot" | "llm";
@@ -10,7 +11,9 @@ interface MessageBubbleProps {
 
 export default function MessageBubble({ role, text, index }: MessageBubbleProps) {
   const isUser = role === "user";
-  const isLLM = role === "llm";
+  const isLLM  = role === "llm";
+  const { theme } = useChatStore();
+  const isLight = theme === "light";
 
   return (
     <motion.div
@@ -54,20 +57,31 @@ export default function MessageBubble({ role, text, index }: MessageBubbleProps)
       <div
         className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed
           ${isUser
-            ? "bg-indigo-900/60 border border-indigo-700/50 text-indigo-100 rounded-tr-sm"
+            ? isLight
+              ? "bg-indigo-100 border border-indigo-300/60 text-indigo-900 rounded-tr-sm"
+              : "bg-indigo-900/60 border border-indigo-700/50 text-indigo-100 rounded-tr-sm"
             : isLLM
-              ? "bg-violet-950/60 border border-violet-700/40 text-zinc-100 rounded-tl-sm"
-              : "bg-zinc-900/80 border border-zinc-800 text-zinc-100 rounded-tl-sm"
+              ? isLight
+                ? "bg-violet-50 border border-violet-200 text-zinc-800 rounded-tl-sm"
+                : "bg-violet-950/60 border border-violet-700/40 text-zinc-100 rounded-tl-sm"
+              : isLight
+                ? "bg-white border border-zinc-200 text-zinc-800 rounded-tl-sm"
+                : "bg-zinc-900/80 border border-zinc-800 text-zinc-100 rounded-tl-sm"
           }`}
       >
         {isUser ? (
           <span>{text}</span>
         ) : (
-          <div className="prose prose-invert prose-sm max-w-none
-                          prose-p:my-1 prose-ul:my-1 prose-li:my-0.5
-                          prose-strong:text-indigo-300
-                          prose-code:text-cyan-300 prose-code:bg-zinc-800/80
-                          prose-code:px-1 prose-code:py-0.5 prose-code:rounded">
+          <div
+            className={`max-w-none
+                        ${isLight
+                          ? "prose prose-sm prose-zinc"
+                          : "prose prose-invert prose-sm"
+                        }
+                        prose-p:my-1 prose-ul:my-1 prose-li:my-0.5
+                        prose-strong:text-indigo-${isLight ? "700" : "300"}
+                        prose-code:text-${isLight ? "indigo-700" : "cyan-300"}`}
+          >
             <ReactMarkdown>{text}</ReactMarkdown>
           </div>
         )}

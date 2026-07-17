@@ -34,10 +34,11 @@ export const conversationGraph: Record<string, ChatNode> = {
     id: "root",
     botMessage: `Hey there 👋 I'm **Ayush Agarwal**.
 
-AI/ML Engineer building:
-• Agentic AI & Multi-Agent Systems
-• Production-grade RAG Pipelines
-• Full-Stack LLM Applications
+AI Software Engineer building:
+• Full-Stack Legal AI (Flutter + React + FastAPI + GCP)
+• Agentic AI & Multi-Agent Systems with MCP
+• Production-grade Hybrid RAG Pipelines
+• Voice AI & Medical Intelligence Systems
 
 Who are you? I'll tailor this experience for you.`,
     options: [
@@ -80,12 +81,13 @@ What would you like to explore?`,
     id: "recruiter_highlights",
     botMessage: `Here's the quick snapshot:
 
-• 🏢 **AI/ML Intern** @ Docu3C Technologies
-• 🔬 **4 Production AI Systems** built and deployed
-• 📊 **82.4% Top-1 accuracy** on 26K+ legal document RAG
-• 🧠 **Multi-agent orchestration** with MCP & Instructor
-• ☁️ Microsoft Azure Certified (Data Fundamentals)
-• 🏆 125+ LeetCode problems solved
+• 🏢 **AI Software Engineer Intern** @ Docu3C Technologies (Aug 2025 – Jun 2026)
+• 🚀 **LexAI** — Live Legal AI Platform · 26,274 SC judgments indexed
+• 🏥 **PRESCRIPTION** — Voice AI Medical Assistant on Hugging Face
+• 📊 **60% reduction** in manual document review via MCP agentic workflows
+• 🧠 **Multi-agent orchestration** with MCP, Instructor & Pydantic
+• ☁️ Microsoft Azure & Google Cloud certified
+• 🏆 **Top 25 team — Mahakumbh Hackathon**
 • 👥 Event Lead: organized 5+ workshops for 200+ participants`,
     options: [
       { label: "🏗️ Dive into Projects", nextNodeId: "projects_hub" },
@@ -122,9 +124,10 @@ You can also download the PDF directly. It covers:
 
 I love building systems that work at the edges of what's possible with LLMs. My focus areas:
 
-• **RAG Systems** — hybrid sparse-dense-graph retrieval
-• **Multi-Agent Orchestration** — MCP, tool-calling, Instructor
-• **Real-time Backends** — FastAPI + SSE + WebSockets
+• **Hybrid RAG** — BM25 + FAISS + PageRank + Weighted RRF fusion
+• **Multi-Agent Orchestration** — MCP, tool-calling, Instructor, Pydantic
+• **Real-time Backends** — FastAPI + SSE + WebSockets + Docker + GCP
+• **Voice AI** — Faster-Whisper + LLM extraction + RapidFuzz matching
 • **Observability** — OpenTelemetry + Arize Phoenix
 
 What do you want to explore?`,
@@ -145,6 +148,16 @@ What do you want to explore?`,
     id: "engineer_architectures",
     botMessage: `Select a system to explore its architecture:`,
     options: [
+      {
+        label: "⚖️ LexAI Full-Stack Platform",
+        nextNodeId: "arch_lexai",
+        sidebarAction: { contentType: "architecture", contentId: "lexai" },
+      },
+      {
+        label: "🏥 PRESCRIPTION Voice AI",
+        nextNodeId: "arch_prescription",
+        sidebarAction: { contentType: "architecture", contentId: "prescription" },
+      },
       {
         label: "⚡ Hybrid Legal RAG",
         nextNodeId: "arch_hybrid_rag",
@@ -167,6 +180,51 @@ What do you want to explore?`,
         },
       },
       { label: "← Back", nextNodeId: "path_engineer" },
+    ],
+  },
+
+  arch_lexai: {
+    id: "arch_lexai",
+    botMessage: `**LexAI** — Full-Stack Legal AI Architecture →
+
+Key design decisions:
+• Hybrid RAG: BM25 (SQLite FTS5) + FAISS + PageRank + Weighted RRF
+• 26,274 Supreme Court judgments indexed
+• FastAPI backend with WebSockets on Google Cloud Run
+• Flutter mobile + React web clients on Firebase Hosting
+• Live demo: lexai-3fd1a.web.app`,
+    options: [
+      {
+        label: "📦 View Full Project",
+        nextNodeId: "project_lexai",
+        sidebarAction: { contentType: "project", contentId: "lexai" },
+      },
+      {
+        label: "🌐 Live Demo",
+        nextNodeId: "arch_lexai",
+        externalUrl: "https://lexai-3fd1a.web.app",
+      },
+      { label: "← Other Architectures", nextNodeId: "engineer_architectures" },
+    ],
+  },
+
+  arch_prescription: {
+    id: "arch_prescription",
+    botMessage: `**PRESCRIPTION** — Voice Medical AI Architecture →
+
+Key design decisions:
+• Faster-Whisper for low-latency speech recognition
+• Groq LLM for medical entity extraction
+• RapidFuzz matching across 30,000+ Indian medicines
+• Full PyTest validation suite for medical accuracy
+• Docker containerized, live on Hugging Face Spaces`,
+    options: [
+      {
+        label: "📦 View Full Project",
+        nextNodeId: "project_prescription",
+        sidebarAction: { contentType: "project", contentId: "prescription" },
+      },
+      { label: "← Other Architectures", nextNodeId: "engineer_architectures" },
     ],
   },
 
@@ -284,17 +342,18 @@ What do you want to see?`,
     id: "founder_impact",
     botMessage: `**Business-Level Impact:**
 
-**Hybrid Legal RAG**
-→ Reduces manual legal document search from hours to seconds
-→ 82.4% precision on 26K+ document corpus
+**LexAI — Live Legal AI Platform**
+→ 26,274 Supreme Court judgments indexed and searchable
+→ Flutter mobile + React web serving real users
+→ lexai-3fd1a.web.app
 
-**PolarBrief AI**
-→ Automates legal brief analysis and argument scoring
-→ Replaces hours of manual reading with structured AI reports
+**PRESCRIPTION — Voice Medical AI**
+→ Converts doctor consultations to structured prescriptions
+→ 30,000+ Indian medicines database with fuzzy matching
 
-**Knowledge Graph Pipeline**
-→ Transforms unstructured case files into navigable entity networks
-→ Enables pattern discovery across thousands of legal documents`,
+**Docu3C Agentic Workflows**
+→ 60% reduction in manual financial document review
+→ MCP tool-calling pipelines for ServiceNow integrations`,
     options: [
       { label: "🔍 Project Deep Dives", nextNodeId: "projects_hub" },
       { label: "✉️ Get in Touch", nextNodeId: "contact_node" },
@@ -310,9 +369,9 @@ What do you want to see?`,
 Here's my journey so far:
 
 **2023** — Started B.Tech CSE @ VIT Bhopal
-**2024** — Learned ML fundamentals, Google Cloud GenAI certs
-**2025** — Built RAG systems, LangChain pipelines, Azure AI
-**2026** — Deep into Agentic AI, MCP, Multi-Agent orchestration
+**2024** — ML fundamentals, Google Cloud GenAI certs, first LLMs
+**2025** — LexAI platform, PRESCRIPTION AI, Docu3C internship, Azure + GCP
+**2026** — Agentic AI, MCP, multi-agent orchestration, Top 25 @ Mahakumbh Hackathon
 
 The biggest lesson: **ship things early, learn from real problems.**`,
     options: [
@@ -357,6 +416,26 @@ The biggest lesson: **ship things early, learn from real problems.**`,
     botMessage: `**My Projects** — Pick one to explore:`,
     options: [
       {
+        label: "⚖️ LexAI — Legal AI Platform",
+        nextNodeId: "project_lexai",
+        sidebarAction: { contentType: "project", contentId: "lexai" },
+      },
+      {
+        label: "🏥 PRESCRIPTION — Voice Medical AI",
+        nextNodeId: "project_prescription",
+        sidebarAction: { contentType: "project", contentId: "prescription" },
+      },
+      {
+        label: "🛡️ Fiducia — Neuro-Symbolic Verifier",
+        nextNodeId: "project_fiducia",
+        sidebarAction: { contentType: "project", contentId: "fiducia" },
+      },
+      {
+        label: "🎥 Video Manipulation Detection",
+        nextNodeId: "project_video_detection",
+        sidebarAction: { contentType: "project", contentId: "video_detection" },
+      },
+      {
         label: "⚡ Hybrid Legal RAG",
         nextNodeId: "project_hybrid_rag",
         sidebarAction: { contentType: "project", contentId: "hybrid_rag" },
@@ -379,19 +458,92 @@ The biggest lesson: **ship things early, learn from real problems.**`,
         nextNodeId: "project_wesad",
         sidebarAction: { contentType: "project", contentId: "wesad" },
       },
+    ],
+  },
+
+  project_lexai: {
+    id: "project_lexai",
+    botMessage: `**LexAI** — Full details on the right →
+
+Production-grade Legal AI Platform indexing 26,274 Supreme Court judgments. Hybrid RAG: BM25 + FAISS + PageRank + Weighted RRF. Flutter mobile + React web on Firebase. Docker backend on Google Cloud Run.
+
+**Live:** lexai-3fd1a.web.app`,
+    options: [
       {
-        label: "⚖️ Constitution Companion",
-        nextNodeId: "project_constitution",
-        sidebarAction: {
-          contentType: "project",
-          contentId: "constitution_companion",
-        },
+        label: "⚙️ View Architecture",
+        nextNodeId: "arch_lexai",
+        sidebarAction: { contentType: "architecture", contentId: "lexai" },
       },
       {
-        label: "🌐 Simhastha",
-        nextNodeId: "project_simhastha",
-        sidebarAction: { contentType: "project", contentId: "simhastha" },
+        label: "🌐 Live Demo",
+        nextNodeId: "project_lexai",
+        externalUrl: "https://lexai-3fd1a.web.app",
       },
+      {
+        label: "🔗 GitHub",
+        nextNodeId: "project_lexai",
+        externalUrl: "https://github.com/Ayush99392003/Legal_AI_Backend-",
+      },
+      { label: "← All Projects", nextNodeId: "projects_hub" },
+    ],
+  },
+
+  project_prescription: {
+    id: "project_prescription",
+    botMessage: `**PRESCRIPTION** — Full details on the right →
+
+AI Voice Medical Assistant converting doctor consultations into structured digital prescriptions. Faster-Whisper ASR + Groq LLM entity extraction + RapidFuzz matching across 30,000+ Indian medicines.
+
+**Live on Hugging Face Spaces.**`,
+    options: [
+      {
+        label: "⚙️ View Architecture",
+        nextNodeId: "arch_prescription",
+        sidebarAction: { contentType: "architecture", contentId: "prescription" },
+      },
+      { label: "← All Projects", nextNodeId: "projects_hub" },
+    ],
+  },
+
+  project_fiducia: {
+    id: "project_fiducia",
+    botMessage: `**Fiducia** — Full details on the right →
+
+HackerRank Orchestrate Hackathon final submission. Dynamic neuro-symbolic claims verification system routing claims based on user risk profiles.
+
+**Key metrics:** 93.8% Average Partial Score | Direct vs CoT Router | OpenTelemetry + Arize Phoenix`,
+    options: [
+      {
+        label: "⚙️ View Architecture",
+        nextNodeId: "arch_fiducia",
+        sidebarAction: { contentType: "architecture", contentId: "fiducia" },
+      },
+      {
+        label: "🔗 GitHub",
+        nextNodeId: "project_fiducia",
+        externalUrl: "https://github.com/Ayush99392003/Fiducia",
+      },
+      { label: "← All Projects", nextNodeId: "projects_hub" },
+    ],
+  },
+
+  project_video_detection: {
+    id: "project_video_detection",
+    botMessage: `**Video Manipulation Detection System** — Full details on the right →
+
+AI-powered video analysis pipeline built with PyTorch, DETR ResNet50, and Optical Flow (OpenCV) to detect deepfakes, frame-tampering, and motion anomalies.`,
+    options: [
+      {
+        label: "⚙️ View Architecture",
+        nextNodeId: "arch_video_detection",
+        sidebarAction: { contentType: "architecture", contentId: "video_detection" },
+      },
+      {
+        label: "🔗 GitHub",
+        nextNodeId: "project_video_detection",
+        externalUrl: "https://github.com/Ayush99392003/Video_MAnipulation_Detection",
+      },
+      { label: "← All Projects", nextNodeId: "projects_hub" },
     ],
   },
 
@@ -399,7 +551,7 @@ The biggest lesson: **ship things early, learn from real problems.**`,
     id: "project_hybrid_rag",
     botMessage: `**Hybrid Legal RAG** — Full details on the right →
 
-The system combines BM25 (FTSS), FAISS dense embeddings, and PageRank-based graph ranking into a unified retrieval system with Reciprocal Rank Fusion.
+The retrieval engine powering LexAI. Combines BM25 (SQLite FTS5), FAISS dense embeddings, and PageRank-based graph ranking into a unified system with Weighted Reciprocal Rank Fusion.
 
 **Key metrics:** 82.4% Top-1 accuracy | NDCG@10 = 0.89 | 26K+ docs`,
     options: [
@@ -545,10 +697,10 @@ A specialized application built around the Simhastha Kumbh Mela event. Leverages
     id: "skills_ai",
     botMessage: `**AI & ML Stack** — Details on the right →
 
-Core: Python • LLMs • RAG • Prompt Engineering • Multi-Agent Systems • NLP • Machine Learning
+Core: Python • LLMs • RAG • Prompt Engineering • Multi-Agent Systems (MCP) • NLP • Faster-Whisper • RapidFuzz
 
 Projects using these skills:
-• Hybrid Legal RAG • PolarBrief • Knowledge Graph • WESAD`,
+• LexAI • PRESCRIPTION • Hybrid Legal RAG • PolarBrief • Knowledge Graph • WESAD`,
     options: [
       { label: "🏗️ See AI Projects", nextNodeId: "projects_hub" },
       { label: "← Other Domains", nextNodeId: "skills_hub" },
@@ -559,10 +711,10 @@ Projects using these skills:
     id: "skills_backend",
     botMessage: `**Backend & API Stack** — Details on the right →
 
-Core: FastAPI • REST APIs • WebSockets • SSE • Async Python • Pydantic • Instructor
+Core: FastAPI • REST APIs • WebSockets • SSE • Async Python • SQLAlchemy • Pydantic • Instructor • PyTest
 
 Projects using these skills:
-• Hybrid Legal RAG backend • Docu3C AI pipelines`,
+• LexAI • PRESCRIPTION • Hybrid Legal RAG • Docu3C AI pipelines`,
     options: [
       { label: "← Other Domains", nextNodeId: "skills_hub" },
     ],
@@ -572,9 +724,9 @@ Projects using these skills:
     id: "skills_cloud",
     botMessage: `**Cloud & DevOps** — Details on the right →
 
-Core: Microsoft Azure • Docker • Azure CosmosDB • Azure Blob Storage • Azure ML • OpenTelemetry • Arize Phoenix
+Core: Google Cloud Run • Firebase Hosting • Cloud Build • Microsoft Azure • Docker • Azure CosmosDB • OpenTelemetry • Arize Phoenix
 
-Certifications: Azure Data Fundamentals`,
+Certifications: Azure Data Fundamentals • 3× Google Cloud GenAI`,
     options: [
       { label: "← Other Domains", nextNodeId: "skills_hub" },
     ],
@@ -584,9 +736,9 @@ Certifications: Azure Data Fundamentals`,
     id: "skills_frontend",
     botMessage: `**Frontend Stack** — Details on the right →
 
-Core: React • TypeScript • Tailwind CSS • Streamlit
+Core: Flutter (mobile) • React / Next.js • TypeScript • Tailwind CSS • Streamlit
 
-Built frontends for AI-driven workflows and validation systems at Docu3C.`,
+Built LexAI mobile (Flutter) + web (React) clients. AI-driven frontends at Docu3C.`,
     options: [
       { label: "← Other Domains", nextNodeId: "skills_hub" },
     ],
@@ -633,9 +785,9 @@ Reach out on any platform:`,
     id: "surprise",
     botMessage: `🎲 **Random Fact about Ayush:**
 
-I built my first production RAG system on a laptop with 8GB RAM — running FAISS indexing on 26,000+ documents meant babysitting memory carefully.
+I built LexAI — a full-stack legal AI platform with Flutter mobile + React web + FastAPI on GCP — while also maintaining a production internship at Docu3C.
 
-The result? 82.4% retrieval accuracy. Worth it.
+Indexed 26,274 Supreme Court judgments with a Hybrid RAG pipeline. Live at lexai-3fd1a.web.app.
 
 Want to explore more?`,
     options: [

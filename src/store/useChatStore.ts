@@ -19,6 +19,8 @@ export interface RightSidebarState {
   contentId: string | null;
 }
 
+export type Theme = "dark" | "light";
+
 interface ChatStore {
   // --- Conversation State ---
   currentNodeId: string;
@@ -30,6 +32,9 @@ interface ChatStore {
 
   // --- Right Sidebar (On-demand context panel) ---
   rightSidebar: RightSidebarState;
+
+  // --- Theme ---
+  theme: Theme;
 
   // --- Actions ---
   selectOption: (
@@ -46,10 +51,15 @@ interface ChatStore {
   toggleLeftPanel: () => void;
   appendLLMMessage: (text: string) => void;
   resetChat: () => void;
+  toggleTheme: () => void;
 }
 
 const generateId = () =>
   Math.random().toString(36).substring(2, 11);
+
+/** Returns true when the current viewport is considered "mobile" (<768px). */
+const isMobile = () =>
+  typeof window !== "undefined" && window.innerWidth < 768;
 
 export const useChatStore = create<ChatStore>((set) => ({
   currentNodeId: "root",
@@ -67,6 +77,7 @@ export const useChatStore = create<ChatStore>((set) => ({
     contentType: "feed",
     contentId: null,
   },
+  theme: "dark",
 
   selectOption: (label, nextNodeId, sidebarAction, externalUrl) => {
     if (externalUrl) {
@@ -95,6 +106,10 @@ export const useChatStore = create<ChatStore>((set) => ({
           { id: generateId(), role: "bot", text: nextNode.botMessage },
         ],
         isProcessing: false,
+        // On mobile, opening the right sidebar auto-closes the left panel
+        leftPanelOpen: sidebarAction && isMobile()
+          ? false
+          : state.leftPanelOpen,
         rightSidebar: sidebarAction
           ? {
               isOpen: true,
@@ -107,13 +122,15 @@ export const useChatStore = create<ChatStore>((set) => ({
   },
 
   openRightSidebar: (contentType, contentId) => {
-    set({
+    set((state) => ({
+      // On mobile, auto-close left panel when right opens
+      leftPanelOpen: isMobile() ? false : state.leftPanelOpen,
       rightSidebar: {
         isOpen: true,
         contentType,
         contentId: contentId ?? null,
       },
-    });
+    }));
   },
 
   closeRightSidebar: () => {
@@ -123,7 +140,17 @@ export const useChatStore = create<ChatStore>((set) => ({
   },
 
   toggleLeftPanel: () => {
-    set((state) => ({ leftPanelOpen: !state.leftPanelOpen }));
+    set((state) => {
+      const nextOpen = !state.leftPanelOpen;
+      return {
+        leftPanelOpen: nextOpen,
+        // On mobile, opening left auto-closes right sidebar
+        rightSidebar:
+          nextOpen && isMobile()
+            ? { ...state.rightSidebar, isOpen: false }
+            : state.rightSidebar,
+      };
+    });
   },
 
   appendLLMMessage: (text) => {
@@ -148,6 +175,17 @@ export const useChatStore = create<ChatStore>((set) => ({
       ],
       isProcessing: false,
       rightSidebar: { isOpen: false, contentType: "feed", contentId: null },
+    });
+  },
+
+  toggleTheme: () => {
+    set((state) => {
+      const next: Theme = state.theme === "dark" ? "light" : "dark";
+      // Apply / remove "light" class on <html> element
+      if (typeof document !== "undefined") {
+        document.documentElement.classList.toggle("light", next === "light");
+      }
+      return { theme: next };
     });
   },
 }));
