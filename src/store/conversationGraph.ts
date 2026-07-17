@@ -40,6 +40,8 @@ AI Software Engineer building:
 • Production-grade Hybrid RAG Pipelines
 • Voice AI & Medical Intelligence Systems
 
+*Tip: You can view my live feed and contact cards on the Left Panel.*
+
 Who are you? I'll tailor this experience for you.`,
     options: [
       { label: "👔 I'm a Recruiter", nextNodeId: "path_recruiter" },

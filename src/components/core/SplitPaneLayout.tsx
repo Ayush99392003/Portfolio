@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChatStore } from "@/store/useChatStore";
 import ChatController from "@/components/chat/ChatController";
@@ -12,6 +13,13 @@ export default function SplitPaneLayout() {
     toggleLeftPanel,
     closeRightSidebar,
   } = useChatStore();
+
+  useEffect(() => {
+    // Open left panel on desktop screen sizes automatically on mount
+    if (typeof window !== "undefined" && window.innerWidth >= 768) {
+      useChatStore.setState({ leftPanelOpen: true });
+    }
+  }, []);
 
   return (
     <div className="flex h-[100dvh] w-full overflow-hidden relative z-10">

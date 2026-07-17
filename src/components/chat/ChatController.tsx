@@ -60,6 +60,12 @@ export default function ChatController() {
 
   const showLLMInput = chatHistory.length > 1; // show after first interaction
   const isLight = theme === "light";
+  const PROMPT_STARTERS = [
+    { label: "🧠 MCP Internship", text: "Tell me about your AI Software Engineer internship at Docu3C." },
+    { label: "⚖️ LexAI Platform", text: "How does LexAI work? Tell me about its hybrid retrieval and database concurrency." },
+    { label: "🏥 Voice Medical AI", text: "Explain your PRESCRIPTION AI voice medical assistant project." },
+    { label: "🏆 Hackathon Win", text: "Tell me about your Mahakumbh Hackathon project and achievement." }
+  ];
 
   return (
     <div
@@ -204,6 +210,30 @@ export default function ChatController() {
             exit={{ opacity: 0, y: 10 }}
             transition={{ type: "spring", stiffness: 280, damping: 24 }}
           >
+            {/* Suggestion Pills */}
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              {PROMPT_STARTERS.map((starter, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setInputValue(starter.text);
+                    if (inputRef.current) {
+                      inputRef.current.focus();
+                    }
+                  }}
+                  className="px-2.5 py-1 rounded-lg text-[10px] font-medium border
+                             transition-all duration-150 active:scale-95"
+                  style={{
+                    background: "var(--card-bg)",
+                    borderColor: "var(--border-subtle)",
+                    color: "var(--text-secondary)",
+                  }}
+                >
+                  {starter.label}
+                </button>
+              ))}
+            </div>
+
             <div
               className="flex items-center gap-2 px-3 py-2 rounded-xl
                           transition-all duration-200"
