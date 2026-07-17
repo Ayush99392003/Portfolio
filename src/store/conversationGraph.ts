@@ -32,25 +32,38 @@ export const conversationGraph: Record<string, ChatNode> = {
   // ─── ROOT / LANDING ────────────────────────────────────────────────
   root: {
     id: "root",
-    botMessage: `Hey there 👋 I'm **Ayush Agarwal**.
+    botMessage: `Hey 👋 I'm **Ayush Agarwal** — AI Software Engineer.
 
-AI Software Engineer building:
-• Full-Stack Legal AI (Flutter + React + FastAPI + GCP)
-• Agentic AI & Multi-Agent Systems with MCP
-• Production-grade Hybrid RAG Pipelines
-• Voice AI & Medical Intelligence Systems
+**6 production projects** · **26,274 docs indexed** · **Top 25 @ Mahakumbh Hackathon**
 
-*Tip: You can view my live feed and contact cards on the Left Panel.*
+I build full-stack AI systems — from Hybrid RAG pipelines and multi-agent orchestration to voice AI and real-time legal platforms.
 
-Who are you? I'll tailor this experience for you.`,
+What brings you here?`,
     options: [
-      { label: "👔 I'm a Recruiter", nextNodeId: "path_recruiter" },
-      { label: "💻 I'm an Engineer", nextNodeId: "path_engineer" },
-      { label: "🚀 I'm a Founder", nextNodeId: "path_founder" },
-      { label: "🎓 I'm a Student", nextNodeId: "path_student" },
-      { label: "✨ Surprise Me", nextNodeId: "surprise" },
+      {
+        label: "🏆 Show me your best work",
+        nextNodeId: "projects_hub",
+      },
+      {
+        label: "📄 Convince me to hire you",
+        nextNodeId: "path_recruiter",
+        sidebarAction: { contentType: "resume" },
+      },
+      {
+        label: "🔬 I want the deep technical stuff",
+        nextNodeId: "path_engineer",
+      },
+      {
+        label: "⚡ Speed run (60 sec)",
+        nextNodeId: "speed_run",
+      },
+      {
+        label: "💬 Let's just chat",
+        nextNodeId: "just_chat",
+      },
     ],
   },
+
 
   // ─── RECRUITER PATH ────────────────────────────────────────────────
   path_recruiter: {
@@ -811,6 +824,38 @@ The fix? A single missing flush call before process exit.
 Now I add observability first — before even writing the core logic.`,
     options: [
       { label: "🧪 See My Experiments", nextNodeId: "engineer_experiments" },
+      { label: "← Back to Start", nextNodeId: "root" },
+    ],
+  },
+
+  speed_run: {
+    id: "speed_run",
+    botMessage: `⚡ **Speed Run: Ayush Agarwal in 60 seconds**
+
+• 💼 **Internship:** AI Software Engineer Intern at Docu3C (Aug 2025 – Jun 2026), built production agentic workflows.
+• 🏆 **Hackathon:** Top 25 finalist out of thousands of teams at the Mahakumbh Hackathon.
+• 🚀 **LexAI:** Legal AI Platform running live at lexai-3fd1a.web.app (26K+ Supreme Court judgments indexed).
+• 🏥 **PRESCRIPTION:** AI voice medical assistant parsing physician audio to structured data (Hugging Face Spaces).
+• 🛠️ **Tech Stack:** Python, FastAPI, React, Flutter, GCP, Azure, OpenTelemetry, Arize Phoenix.
+
+What do you want to drill down into?`,
+    options: [
+      { label: "🏆 Show me your best work", nextNodeId: "projects_hub" },
+      { label: "🔬 I want the deep technical stuff", nextNodeId: "path_engineer" },
+      { label: "📄 See My Resume", nextNodeId: "resume_download", sidebarAction: { contentType: "resume" } },
+      { label: "← Back to Start", nextNodeId: "root" },
+    ],
+  },
+
+  just_chat: {
+    id: "just_chat",
+    botMessage: `💬 **AI Chatbot Mode Activated**
+
+Feel free to ask the AI assistant anything about my projects, my experience, or my tech stack using the input box below.
+
+*Try asking: "What was your role at Docu3C?" or "How does the hybrid RAG system work?"*`,
+    options: [
+      { label: "🏆 Show me your projects instead", nextNodeId: "projects_hub" },
       { label: "← Back to Start", nextNodeId: "root" },
     ],
   },

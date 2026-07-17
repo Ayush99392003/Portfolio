@@ -16,6 +16,7 @@ export default function ChatController() {
     chatHistory,
     theme,
     toggleTheme,
+    currentNodeId,
   } = useChatStore();
 
   const [inputValue, setInputValue] = useState("");
@@ -62,7 +63,7 @@ export default function ChatController() {
     }
   };
 
-  const showLLMInput = chatHistory.length > 1; // show after first interaction
+  const showLLMInput = chatHistory.length > 1 || currentNodeId === "just_chat"; // show after first interaction
   const isLight = theme === "light";
   const PROMPT_STARTERS = [
     { label: "🧠 MCP Internship", text: "Tell me about your AI Software Engineer internship at Docu3C." },

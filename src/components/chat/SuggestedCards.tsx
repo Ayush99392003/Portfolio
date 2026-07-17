@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useChatStore } from "@/store/useChatStore";
+import { SidebarContentType } from "@/store/conversationGraph";
 
 interface CardColors {
   gradFrom: string;
@@ -23,122 +24,26 @@ interface CardConfig {
   dark: CardColors;
   light: CardColors;
   shape: "circle" | "ring" | "dots" | "grid" | "hex" | "wave";
+  sidebarAction?: {
+    contentType: SidebarContentType;
+    contentId?: string;
+  };
 }
 
 const CARDS: CardConfig[] = [
   {
-    emoji: "👔",
-    label: "I'm a Recruiter",
-    desc: "Resume · Highlights · Contact",
-    badge: "< 2 min read",
-    nextNodeId: "path_recruiter",
-    accent: "#818cf8",
-    dark: {
-      gradFrom: "#1e1b4b", gradTo: "#0f0a2e",
-      borderColor: "rgba(99,102,241,0.35)",
-      glowColor: "rgba(99,102,241,0.18)",
-      labelColor: "#ffffff", descColor: "#71717a",
-      descHoverColor: "#a1a1aa",
-      hoverShadowExtra: "rgba(0,0,0,0.6)",
-    },
-    light: {
-      gradFrom: "#eef2ff", gradTo: "#e0e7ff",
-      borderColor: "rgba(99,102,241,0.30)",
-      glowColor: "rgba(99,102,241,0.12)",
-      labelColor: "#1e1b4b", descColor: "#6366f1",
-      descHoverColor: "#4338ca",
-      hoverShadowExtra: "rgba(99,102,241,0.10)",
-    },
-    shape: "circle",
-  },
-  {
-    emoji: "💻",
-    label: "I'm an Engineer",
-    desc: "Architectures · Code · Depth",
-    badge: "Technical",
-    nextNodeId: "path_engineer",
-    accent: "#22d3ee",
-    dark: {
-      gradFrom: "#0c1f2e", gradTo: "#050d1a",
-      borderColor: "rgba(6,182,212,0.35)",
-      glowColor: "rgba(6,182,212,0.15)",
-      labelColor: "#ffffff", descColor: "#71717a",
-      descHoverColor: "#a1a1aa",
-      hoverShadowExtra: "rgba(0,0,0,0.6)",
-    },
-    light: {
-      gradFrom: "#ecfeff", gradTo: "#cffafe",
-      borderColor: "rgba(6,182,212,0.30)",
-      glowColor: "rgba(6,182,212,0.10)",
-      labelColor: "#164e63", descColor: "#0891b2",
-      descHoverColor: "#0e7490",
-      hoverShadowExtra: "rgba(6,182,212,0.10)",
-    },
-    shape: "grid",
-  },
-  {
-    emoji: "🚀",
-    label: "I'm a Founder",
-    desc: "Products · Impact · Metrics",
-    badge: "PM Focus",
-    nextNodeId: "path_founder",
-    accent: "#34d399",
-    dark: {
-      gradFrom: "#0a1f1a", gradTo: "#030f0d",
-      borderColor: "rgba(52,211,153,0.30)",
-      glowColor: "rgba(52,211,153,0.12)",
-      labelColor: "#ffffff", descColor: "#71717a",
-      descHoverColor: "#a1a1aa",
-      hoverShadowExtra: "rgba(0,0,0,0.6)",
-    },
-    light: {
-      gradFrom: "#ecfdf5", gradTo: "#d1fae5",
-      borderColor: "rgba(52,211,153,0.30)",
-      glowColor: "rgba(52,211,153,0.10)",
-      labelColor: "#064e3b", descColor: "#059669",
-      descHoverColor: "#047857",
-      hoverShadowExtra: "rgba(52,211,153,0.10)",
-    },
-    shape: "ring",
-  },
-  {
-    emoji: "🎓",
-    label: "I'm a Student",
-    desc: "Journey · Timeline · Growth",
-    badge: "2023 → 2026",
-    nextNodeId: "path_student",
-    accent: "#a78bfa",
-    dark: {
-      gradFrom: "#1a0f2e", gradTo: "#0d0618",
-      borderColor: "rgba(139,92,246,0.35)",
-      glowColor: "rgba(139,92,246,0.15)",
-      labelColor: "#ffffff", descColor: "#71717a",
-      descHoverColor: "#a1a1aa",
-      hoverShadowExtra: "rgba(0,0,0,0.6)",
-    },
-    light: {
-      gradFrom: "#f5f3ff", gradTo: "#ede9fe",
-      borderColor: "rgba(139,92,246,0.30)",
-      glowColor: "rgba(139,92,246,0.10)",
-      labelColor: "#3b0764", descColor: "#7c3aed",
-      descHoverColor: "#6d28d9",
-      hoverShadowExtra: "rgba(139,92,246,0.10)",
-    },
-    shape: "dots",
-  },
-  {
-    emoji: "⚡",
-    label: "Show All Projects",
-    desc: "6 AI/ML Projects Built",
-    badge: "Production",
+    emoji: "🏆",
+    label: "Show me your best work",
+    desc: "Explore featured AI/ML & Full-Stack projects",
+    badge: "Featured",
     nextNodeId: "projects_hub",
     accent: "#fb923c",
     dark: {
       gradFrom: "#1f1008", gradTo: "#0f0804",
       borderColor: "rgba(251,146,60,0.30)",
       glowColor: "rgba(251,146,60,0.12)",
-      labelColor: "#ffffff", descColor: "#71717a",
-      descHoverColor: "#a1a1aa",
+      labelColor: "#ffffff", descColor: "#a1a1aa",
+      descHoverColor: "#fdba74",
       hoverShadowExtra: "rgba(0,0,0,0.6)",
     },
     light: {
@@ -152,18 +57,94 @@ const CARDS: CardConfig[] = [
     shape: "hex",
   },
   {
-    emoji: "✨",
-    label: "Surprise Me",
-    desc: "Random story from Ayush",
-    badge: "Fun",
-    nextNodeId: "surprise",
+    emoji: "🔬",
+    label: "I want the deep technical stuff",
+    desc: "System architectures, Tech stack details & RAG pipelines",
+    badge: "Deep Dive",
+    nextNodeId: "path_engineer",
+    accent: "#22d3ee",
+    dark: {
+      gradFrom: "#0c1f2e", gradTo: "#050d1a",
+      borderColor: "rgba(6,182,212,0.35)",
+      glowColor: "rgba(6,182,212,0.15)",
+      labelColor: "#ffffff", descColor: "#a1a1aa",
+      descHoverColor: "#67e8f9",
+      hoverShadowExtra: "rgba(0,0,0,0.6)",
+    },
+    light: {
+      gradFrom: "#ecfeff", gradTo: "#cffafe",
+      borderColor: "rgba(6,182,212,0.30)",
+      glowColor: "rgba(6,182,212,0.10)",
+      labelColor: "#164e63", descColor: "#0891b2",
+      descHoverColor: "#0e7490",
+      hoverShadowExtra: "rgba(6,182,212,0.10)",
+    },
+    shape: "grid",
+  },
+  {
+    emoji: "📄",
+    label: "Convince me to hire you",
+    desc: "Resume, Internship info, and key highlights",
+    badge: "Hire Me",
+    nextNodeId: "path_recruiter",
+    sidebarAction: { contentType: "resume" },
+    accent: "#818cf8",
+    dark: {
+      gradFrom: "#1e1b4b", gradTo: "#0f0a2e",
+      borderColor: "rgba(99,102,241,0.35)",
+      glowColor: "rgba(99,102,241,0.18)",
+      labelColor: "#ffffff", descColor: "#a1a1aa",
+      descHoverColor: "#c7d2fe",
+      hoverShadowExtra: "rgba(0,0,0,0.6)",
+    },
+    light: {
+      gradFrom: "#eef2ff", gradTo: "#e0e7ff",
+      borderColor: "rgba(99,102,241,0.30)",
+      glowColor: "rgba(99,102,241,0.12)",
+      labelColor: "#1e1b4b", descColor: "#6366f1",
+      descHoverColor: "#4338ca",
+      hoverShadowExtra: "rgba(99,102,241,0.10)",
+    },
+    shape: "circle",
+  },
+  {
+    emoji: "⚡",
+    label: "Speed run (60 sec)",
+    desc: "Get a rapid-fire overview of my stats, achievements, and impact",
+    badge: "Quick Overview",
+    nextNodeId: "speed_run",
+    accent: "#34d399",
+    dark: {
+      gradFrom: "#0a1f1a", gradTo: "#030f0d",
+      borderColor: "rgba(52,211,153,0.30)",
+      glowColor: "rgba(52,211,153,0.12)",
+      labelColor: "#ffffff", descColor: "#a1a1aa",
+      descHoverColor: "#a7f3d0",
+      hoverShadowExtra: "rgba(0,0,0,0.6)",
+    },
+    light: {
+      gradFrom: "#ecfdf5", gradTo: "#d1fae5",
+      borderColor: "rgba(52,211,153,0.30)",
+      glowColor: "rgba(52,211,153,0.10)",
+      labelColor: "#064e3b", descColor: "#059669",
+      descHoverColor: "#047857",
+      hoverShadowExtra: "rgba(52,211,153,0.10)",
+    },
+    shape: "ring",
+  },
+  {
+    emoji: "💬",
+    label: "Let's just chat",
+    desc: "Ask the AI assistant anything about my skills and experience",
+    badge: "AI Assistant",
+    nextNodeId: "just_chat",
     accent: "#f472b6",
     dark: {
       gradFrom: "#1f0a1a", gradTo: "#0f050d",
       borderColor: "rgba(244,114,182,0.30)",
       glowColor: "rgba(244,114,182,0.12)",
-      labelColor: "#ffffff", descColor: "#71717a",
-      descHoverColor: "#a1a1aa",
+      labelColor: "#ffffff", descColor: "#a1a1aa",
+      descHoverColor: "#fbcfe8",
       hoverShadowExtra: "rgba(0,0,0,0.6)",
     },
     light: {
@@ -175,6 +156,31 @@ const CARDS: CardConfig[] = [
       hoverShadowExtra: "rgba(244,114,182,0.10)",
     },
     shape: "wave",
+  },
+  {
+    emoji: "🎲",
+    label: "Surprise Me",
+    desc: "Fun stories, lessons learned, and behind-the-scenes facts",
+    badge: "Stories",
+    nextNodeId: "surprise",
+    accent: "#a78bfa",
+    dark: {
+      gradFrom: "#1a0f2e", gradTo: "#0d0618",
+      borderColor: "rgba(139,92,246,0.35)",
+      glowColor: "rgba(139,92,246,0.15)",
+      labelColor: "#ffffff", descColor: "#a1a1aa",
+      descHoverColor: "#ddd6fe",
+      hoverShadowExtra: "rgba(0,0,0,0.6)",
+    },
+    light: {
+      gradFrom: "#f5f3ff", gradTo: "#ede9fe",
+      borderColor: "rgba(139,92,246,0.30)",
+      glowColor: "rgba(139,92,246,0.10)",
+      labelColor: "#3b0764", descColor: "#7c3aed",
+      descHoverColor: "#6d28d9",
+      hoverShadowExtra: "rgba(139,92,246,0.10)",
+    },
+    shape: "dots",
   },
 ];
 
@@ -333,7 +339,7 @@ export default function SuggestedCards() {
           <motion.button
             key={i}
             onClick={() =>
-              selectOption(card.label, card.nextNodeId)
+              selectOption(card.label, card.nextNodeId, card.sidebarAction)
             }
             className="group relative flex flex-col items-start
                        gap-2 p-4 rounded-2xl text-left cursor-pointer

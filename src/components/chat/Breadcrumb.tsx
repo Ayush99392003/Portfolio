@@ -22,6 +22,8 @@ const NODE_LABELS: Record<string, string> = {
   founder_impact: "Impact",
   student_timeline: "Timeline",
   student_certs: "Certifications",
+  speed_run: "Speed Run",
+  just_chat: "AI Chat",
 };
 
 function getLabel(nodeId: string): string {
