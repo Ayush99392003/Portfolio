@@ -5,8 +5,14 @@ import { conversationGraph } from "@/store/conversationGraph";
 import { ExternalLink } from "lucide-react";
 
 export default function OptionButtons() {
-  const { currentNodeId, selectOption, isProcessing } = useChatStore();
+  const {
+    currentNodeId,
+    selectOption,
+    isProcessing,
+    theme,
+  } = useChatStore();
   const currentNode = conversationGraph[currentNodeId];
+  const isLight = theme === "light";
 
   if (!currentNode || isProcessing) return null;
 
@@ -28,22 +34,61 @@ export default function OptionButtons() {
               option.label,
               option.nextNodeId,
               option.sidebarAction,
-              option.externalUrl
+              option.externalUrl,
             )
           }
-          className="group flex items-center gap-1.5 px-3.5 py-2 rounded-xl
-                     text-sm font-medium border border-zinc-700/70
-                     bg-zinc-900/60 text-zinc-300 hover:text-white
-                     hover:border-indigo-500/70 hover:bg-indigo-950/50
+          className="group flex items-center gap-1.5
+                     px-3.5 py-2 rounded-xl text-sm
+                     font-medium border
                      transition-all duration-200
-                     hover:shadow-[0_0_12px_rgba(79,70,229,0.2)]
                      active:scale-[0.97] cursor-pointer"
+          style={{
+            background: isLight
+              ? "rgba(255,255,255,0.80)"
+              : "rgba(24,24,27,0.60)",
+            borderColor: isLight
+              ? "rgba(161,161,170,0.40)"
+              : "rgba(63,63,70,0.70)",
+            color: isLight ? "#3f3f46" : "#d4d4d8",
+          }}
+          onMouseEnter={(e) => {
+            const el = e.currentTarget;
+            el.style.borderColor = isLight
+              ? "rgba(99,102,241,0.50)"
+              : "rgba(99,102,241,0.70)";
+            el.style.background = isLight
+              ? "rgba(238,242,255,0.90)"
+              : "rgba(30,27,75,0.50)";
+            el.style.color = isLight
+              ? "#1e1b4b"
+              : "#ffffff";
+            el.style.boxShadow = isLight
+              ? "0 0 12px rgba(99,102,241,0.12)"
+              : "0 0 12px rgba(79,70,229,0.2)";
+          }}
+          onMouseLeave={(e) => {
+            const el = e.currentTarget;
+            el.style.borderColor = isLight
+              ? "rgba(161,161,170,0.40)"
+              : "rgba(63,63,70,0.70)";
+            el.style.background = isLight
+              ? "rgba(255,255,255,0.80)"
+              : "rgba(24,24,27,0.60)";
+            el.style.color = isLight
+              ? "#3f3f46"
+              : "#d4d4d8";
+            el.style.boxShadow = "none";
+          }}
           variants={{
             hidden: { opacity: 0, y: 8 },
             visible: {
               opacity: 1,
               y: 0,
-              transition: { type: "spring", stiffness: 280, damping: 22 },
+              transition: {
+                type: "spring",
+                stiffness: 280,
+                damping: 22,
+              },
             },
           }}
           whileHover={{ scale: 1.02 }}
@@ -53,7 +98,12 @@ export default function OptionButtons() {
           {option.externalUrl && (
             <ExternalLink
               size={11}
-              className="text-zinc-600 group-hover:text-indigo-400 flex-shrink-0"
+              className="flex-shrink-0"
+              style={{
+                color: isLight
+                  ? "#a1a1aa"
+                  : "#52525b",
+              }}
             />
           )}
         </motion.button>
@@ -61,3 +111,4 @@ export default function OptionButtons() {
     </motion.div>
   );
 }
+

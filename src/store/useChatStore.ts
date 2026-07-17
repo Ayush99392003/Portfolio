@@ -26,6 +26,7 @@ interface ChatStore {
   currentNodeId: string;
   chatHistory: ChatMessage[];
   isProcessing: boolean;
+  nodeHistory: string[];
 
   // --- Left Panel (Activity Feed) ---
   leftPanelOpen: boolean;
@@ -40,18 +41,22 @@ interface ChatStore {
   selectOption: (
     label: string,
     nextNodeId: string,
-    sidebarAction?: { contentType: SidebarContentType; contentId?: string },
-    externalUrl?: string
+    sidebarAction?: {
+      contentType: SidebarContentType;
+      contentId?: string;
+    },
+    externalUrl?: string,
   ) => void;
   openRightSidebar: (
     contentType: SidebarContentType,
-    contentId?: string
+    contentId?: string,
   ) => void;
   closeRightSidebar: () => void;
   toggleLeftPanel: () => void;
   appendLLMMessage: (text: string) => void;
   resetChat: () => void;
   toggleTheme: () => void;
+  jumpToNode: (nodeId: string) => void;
 }
 
 const generateId = () =>
@@ -71,6 +76,7 @@ export const useChatStore = create<ChatStore>((set) => ({
     },
   ],
   isProcessing: false,
+  nodeHistory: ["root"],
   leftPanelOpen: false,
   rightSidebar: {
     isOpen: false,          // RIGHT panel starts HIDDEN
@@ -97,10 +103,18 @@ export const useChatStore = create<ChatStore>((set) => ({
       isProcessing: true,
     }));
 
-    // Simulate bot "thinking" delay
+    // Simulate bot "thinking" — variable delay
+    const typingDelay = Math.min(
+      400 + nextNode.botMessage.length * 3,
+      2000,
+    );
     setTimeout(() => {
       set((state) => ({
         currentNodeId: nextNodeId,
+        nodeHistory: [
+          ...state.nodeHistory,
+          nextNodeId,
+        ],
         chatHistory: [
           ...state.chatHistory,
           { id: generateId(), role: "bot", text: nextNode.botMessage },
@@ -118,7 +132,7 @@ export const useChatStore = create<ChatStore>((set) => ({
             }
           : state.rightSidebar,
       }));
-    }, 600);
+    }, typingDelay);
   },
 
   openRightSidebar: (contentType, contentId) => {
@@ -174,7 +188,38 @@ export const useChatStore = create<ChatStore>((set) => ({
         },
       ],
       isProcessing: false,
-      rightSidebar: { isOpen: false, contentType: "feed", contentId: null },
+      nodeHistory: ["root"],
+      rightSidebar: {
+        isOpen: false,
+        contentType: "feed",
+        contentId: null,
+      },
+    });
+  },
+
+  jumpToNode: (nodeId) => {
+    const node = conversationGraph[nodeId];
+    if (!node) return;
+    set((state) => {
+      // Trim history back to the target node
+      const idx = state.nodeHistory.indexOf(nodeId);
+      const trimmed =
+        idx >= 0
+          ? state.nodeHistory.slice(0, idx + 1)
+          : [...state.nodeHistory, nodeId];
+      return {
+        currentNodeId: nodeId,
+        nodeHistory: trimmed,
+        chatHistory: [
+          ...state.chatHistory,
+          {
+            id: generateId(),
+            role: "bot",
+            text: node.botMessage,
+          },
+        ],
+        isProcessing: false,
+      };
     });
   },
 

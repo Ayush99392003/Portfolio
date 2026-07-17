@@ -4,6 +4,8 @@ import { RotateCcw, PanelLeft, Send, Loader2, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChatStore } from "@/store/useChatStore";
 import ChatHistory from "./ChatHistory";
+import Breadcrumb from "./Breadcrumb";
+import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
 
 export default function ChatController() {
   const {
@@ -19,6 +21,8 @@ export default function ChatController() {
   const [inputValue, setInputValue] = useState("");
   const [llmLoading, setLlmLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useKeyboardShortcuts();
 
   const handleSend = async () => {
     const query = inputValue.trim();
@@ -192,6 +196,9 @@ export default function ChatController() {
           </button>
         </div>
       </div>
+
+      {/* ── Breadcrumb Navigation ── */}
+      <Breadcrumb />
 
       {/* ── Chat Messages ── */}
       <ChatHistory />
